@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -27,12 +28,12 @@ public class Orders {
   private Integer shippingAmount;
 
   @OneToMany(mappedBy = "order")
-  private List<OrdersDetail> orderDetails;
+  private List<OrdersDetail> orderDetails = new ArrayList<>();
 
   private LocalDateTime orderedAt;
 
   public Orders(List<OrdersDetail> orderDetails) {
-    this.orderDetails = orderDetails;
+    this.orderDetails.addAll(orderDetails);
     this.totalAmount = orderDetails.stream().mapToInt(orderDetail -> orderDetail.getProduct().getPrice() * orderDetail.getQuantity()).sum();
     this.shippingAmount = totalAmount >= 50000 ? 0 : 2500;
     this.orderedAt = LocalDateTime.now();

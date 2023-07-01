@@ -1,0 +1,17 @@
+server:
+  shutdown: graceful
+
+spring:
+  application:
+    name: 29cm-homework-test
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: create
+    database: mysql
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true

@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import java.util.List;
+import kr.co._29cm.homework.common.exception.SoldOutException;
 import lombok.Getter;
 
 @Getter
@@ -17,9 +18,16 @@ public class Product {
 
   private Integer price;
 
-  private Integer quantity;
+  private Integer stockQuantity;
 
   @OneToMany(mappedBy = "product")
   private List<OrdersDetail> ordersDetails;
+
+  public void order(Integer orderQuantity) {
+    this.stockQuantity = this.stockQuantity - orderQuantity;
+    if (this.stockQuantity < 0) {
+      throw new SoldOutException(String.format("SoldOutException 발생. 주문한 상품량(%d)이 재고량(%d)보다 큽니다.", orderQuantity, stockQuantity));
+    }
+  }
 
 }

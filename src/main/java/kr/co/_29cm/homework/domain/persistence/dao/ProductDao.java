@@ -1,6 +1,7 @@
 package kr.co._29cm.homework.domain.persistence.dao;
 
 import java.util.List;
+import kr.co._29cm.homework.common.exception.EntityNotExistsException;
 import kr.co._29cm.homework.domain.persistence.entity.Product;
 import kr.co._29cm.homework.domain.persistence.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,10 +17,10 @@ public class ProductDao {
     return productRepository.findAll();
   }
 
-  public Product findById(Long id) {
-    // TODO throw하는 exception 변경 필요.
-    return productRepository.findById(id)
-        .orElseThrow();
+  public Product findOnePessimistic(Long id) {
+    return productRepository.findByIdPessimistic(id)
+        .orElseThrow(() -> new EntityNotExistsException(
+            String.format("product id : %d is not exists.", id)));
   }
 
 }
