@@ -14,7 +14,7 @@ public class ProductDao {
   private final ProductRepository productRepository;
 
   public List<Product> findAll() {
-    return productRepository.findAll();
+    return productRepository.findAllByOrderByIdDesc();
   }
 
   public Product findOnePessimistic(Long id) {
