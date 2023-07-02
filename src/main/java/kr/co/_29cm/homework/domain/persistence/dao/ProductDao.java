@@ -20,7 +20,7 @@ public class ProductDao {
   public Product findOnePessimistic(Long id) {
     return productRepository.findByIdPessimistic(id)
         .orElseThrow(() -> new EntityNotExistsException(
-            String.format("product id : %d is not exists.", id)));
+            String.format("상품번호 %s는 존재하지 않는 상품입니다.", id)));
   }
 
 }

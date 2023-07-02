@@ -24,10 +24,10 @@ public class Product {
   private List<OrdersDetail> ordersDetails;
 
   public void order(Integer orderQuantity) {
-    this.stockQuantity = this.stockQuantity - orderQuantity;
-    if (this.stockQuantity < 0) {
+    if (this.stockQuantity - orderQuantity < 0) {
       throw new SoldOutException(String.format("SoldOutException 발생. 주문한 상품량(%d)이 재고량(%d)보다 큽니다.", orderQuantity, stockQuantity));
     }
+    this.stockQuantity = this.stockQuantity - orderQuantity;
   }
 
 }

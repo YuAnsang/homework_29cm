@@ -2,7 +2,6 @@ package kr.co._29cm.homework.domain.controller;
 
 import static kr.co._29cm.homework.common.SpringProfiles.TEST;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import kr.co._29cm.homework.TestApplication;

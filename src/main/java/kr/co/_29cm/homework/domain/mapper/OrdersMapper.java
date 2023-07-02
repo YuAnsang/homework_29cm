@@ -24,6 +24,8 @@ public class OrdersMapper {
   private static OrdersDetailDto toDto(OrdersDetail orderDetail) {
     return new OrdersDetailDto(
         orderDetail.getId(),
+        orderDetail.getProduct().getId(),
+        orderDetail.getProduct().getName(),
         orderDetail.getQuantity()
     );
   }

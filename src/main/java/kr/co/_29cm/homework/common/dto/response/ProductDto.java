@@ -7,4 +7,8 @@ public record ProductDto(
     Integer quantity
 ) {
 
+  public String[] toArray() {
+    return new String[]{String.valueOf(id), name, String.valueOf(price), String.valueOf(quantity)};
+  }
+
 }

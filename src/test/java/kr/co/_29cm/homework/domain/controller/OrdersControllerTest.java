@@ -13,7 +13,6 @@ import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 import kr.co._29cm.homework.TestApplication;
 import kr.co._29cm.homework.common.dto.request.OrdersRequest;
 import kr.co._29cm.homework.common.dto.response.OrdersDto;
@@ -117,7 +116,7 @@ class OrdersControllerTest {
     // when & Then
     assertThatThrownBy(() -> orderController.order(requests))
         .isInstanceOf(EntityNotExistsException.class)
-        .hasMessageContaining(String.format("product id : %d is not exists.", productId));
+        .hasMessageContaining(String.format("상품번호 %s는 존재하지 않는 상품입니다.", productId));
   }
 
   @Test
@@ -145,7 +144,7 @@ class OrdersControllerTest {
         }
       });
     }
-    latch.await(60, TimeUnit.SECONDS);
+    latch.await();
     Product product = productRepository.findById(productId).orElseThrow();
 
     // then
